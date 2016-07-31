@@ -1,0 +1,14 @@
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\bin\Debug\MegaMillionsApp.exe.config
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp.csprojResolveAssemblyReference.cache
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MainWindow.g.cs
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\App.g.cs
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp_MarkupCompile.cache
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp_MarkupCompile.lref
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\bin\Debug\MegaMillionsApp.exe
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\bin\Debug\MegaMillionsApp.pdb
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MainWindow.baml
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp.g.resources
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp.Properties.Resources.resources
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp.csproj.GenerateResource.Cache
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp.exe
+c:\users\laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp.pdb

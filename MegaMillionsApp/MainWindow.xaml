@@ -1,0 +1,35 @@
+﻿<Window x:Class="MegaMillionsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaMillionsApp"
+        mc:Ignorable="d"
+        Title="Mega Million Winners" Height="350" Width="525"
+        Loaded="Lottery_Loaded">
+    <Grid>
+        <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Width="40">
+            <MenuItem FontSize="15" Header="Sort" Height="25">
+                <MenuItem Header="Ascending"  Click="Ascending_MenuItem_Click"/>
+                <MenuItem Header="Descending" Click="Descending_MenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <ListView HorizontalAlignment="Left" Margin ="0,27,0,0"
+                  VerticalAlignment="Top"
+                  Name="LotteryNumbers" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Lottery Numbers"
+                                DisplayMemberBinding="{Binding Numbers}"
+                                Width="250"/>
+                    <GridViewColumn Header="# of times won"
+                                    DisplayMemberBinding="{Binding NumOfTimes}"
+                                    Width="120"/>
+                    <GridViewColumn Header="Last Time Won"
+                                    DisplayMemberBinding="{Binding LastWon}"
+                                    Width="120"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
