@@ -8,7 +8,7 @@
         Title="Mega Million Winners" Height="350" Width="525"
         Loaded="Lottery_Loaded">
     <Grid>
-        <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Width="40">
+        <Menu HorizontalAlignment="Left" VerticalAlignment="Top">
             <MenuItem FontSize="15" Header="Sort" Height="25">
                 <MenuItem Header="Ascending"  Click="Ascending_MenuItem_Click"/>
                 <MenuItem Header="Descending" Click="Descending_MenuItem_Click"/>
@@ -22,10 +22,13 @@
                     <GridViewColumn Header="Lottery Numbers"
                                 DisplayMemberBinding="{Binding Numbers}"
                                 Width="250"/>
+                    <GridViewColumn Header="MegaBall"
+                                DisplayMemberBinding="{Binding MegaBall}"
+                                Width="100"/>
                     <GridViewColumn Header="# of times won"
                                     DisplayMemberBinding="{Binding NumOfTimes}"
-                                    Width="120"/>
-                    <GridViewColumn Header="Last Time Won"
+                                    Width="100"/>
+                    <GridViewColumn Header="Date Won"
                                     DisplayMemberBinding="{Binding LastWon}"
                                     Width="120"/>
                 </GridView>

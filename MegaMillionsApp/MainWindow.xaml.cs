@@ -4,21 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Data;
-using System.Net;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MegaMillionsApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// To-Do:
+    /// Add Unit Tests
+    /// Add Exceptions
+    /// Add Try Catches
+    /// Have an algotrigthm guess Mega Million Winner (Most likely value building off each other)
+    /// Add Ping to email if I won the Lottery
+    /// Create backup incase deleted 
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -27,24 +24,31 @@ namespace MegaMillionsApp
             InitializeComponent();
         }
 
-        class LotteryNumberSets
+        class LotteryNumberSets           
+
         {
             public string Numbers { get; set; }
-            public int NumOfTimes { get; set; }
+            public string MegaBall { get; set; }
+            public string NumOfTimes { get; set; }
             public string LastWon { get; set;}
         }
 
         private void Lottery_Loaded(object sender, RoutedEventArgs e)
         {
-            WebClient web = new WebClient();
+            CSVManipulation SortedLists = new CSVManipulation();
+            string[] displayDates = SortedLists.SortedDates();
+            string[] displayNumbers = SortedLists.SortedNumbers();
+            string[] displayMegaBall = SortedLists.SortedMegaBall();
 
-           web.DownloadFile("http://txlottery.org/export/sites/lottery/Games/Mega_Millions/Winning_Numbers/megamillions.csv", "MegaMillionNumbers");
-
+            for (var sizeOfArrays = displayDates.Count()-1; sizeOfArrays > 0; --sizeOfArrays)
+            {
+                LotteryNumbers.Items.Add(new LotteryNumberSets() { Numbers = displayNumbers[sizeOfArrays], MegaBall = displayMegaBall[sizeOfArrays], NumOfTimes = "NA", LastWon = displayDates[sizeOfArrays] });
+            }
         }
 
         private void Ascending_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            //LotteryNumbers.Items.Re
         }
 
         private void Descending_MenuItem_Click(object sender, RoutedEventArgs e)
