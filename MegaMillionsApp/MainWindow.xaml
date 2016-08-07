@@ -14,25 +14,40 @@
                 <MenuItem Header="Descending" Click="Descending_MenuItem_Click"/>
             </MenuItem>
         </Menu>
-        <ListView HorizontalAlignment="Left" Margin ="0,27,0,0"
+
+
+
+        <!--<ListView HorizontalAlignment="Left" Margin ="0,27,0,0"
                   VerticalAlignment="Top"
                   Name="LotteryNumbers" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
+
                     <GridViewColumn Header="Lottery Numbers"
-                                DisplayMemberBinding="{Binding Numbers}"
+                                DisplayMemberBinding="{Binding GridView1}"
                                 Width="250"/>
+                    <GridViewColumn Header="# of times won"
+                                    DisplayMemberBinding="{Binding NumOfTimesNumbers}"
+                                    Width="100"/>
                     <GridViewColumn Header="MegaBall"
                                 DisplayMemberBinding="{Binding MegaBall}"
                                 Width="100"/>
                     <GridViewColumn Header="# of times won"
-                                    DisplayMemberBinding="{Binding NumOfTimes}"
+                                    DisplayMemberBinding="{Binding NumOfTimesMegaBall}"
                                     Width="100"/>
                     <GridViewColumn Header="Date Won"
                                     DisplayMemberBinding="{Binding LastWon}"
                                     Width="120"/>
                 </GridView>
             </ListView.View>
-        </ListView>
+        </ListView>-->
+
+
+        <DataGrid Name="MegaBallGrid" ItemsSource="{Binding}" 
+            VerticalContentAlignment="Stretch" 
+            HorizontalContentAlignment="Stretch" 
+            GridLinesVisibility="Vertical" 
+            MinColumnWidth="250"/>
+
     </Grid>
 </Window>

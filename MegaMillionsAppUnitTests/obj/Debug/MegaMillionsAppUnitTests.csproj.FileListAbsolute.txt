@@ -1,0 +1,10 @@
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsAppUnitTests.dll
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsAppUnitTests.pdb
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsApp.exe
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.dll
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.pdb
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsApp.pdb
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\nunit.framework.dll
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\nunit.framework.xml
