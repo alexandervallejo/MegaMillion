@@ -7,7 +7,7 @@ using System.Data;
 
 namespace MegaMillionsApp
 {
-    public class CSVManipulation
+    public class SortedLists
     {
         private string ColumnHeadingI = "Winning Numbers(Sorted)";
         private string ColumnHeadingII = "Mega Ball";
@@ -44,6 +44,7 @@ namespace MegaMillionsApp
             return splitted.ToArray();
         }
 
+        
         /*  
             Data comes in latest to earliest, so we read from last to first.
             Use 10 numbers at a time, read right to left.
@@ -53,7 +54,8 @@ namespace MegaMillionsApp
             Grab 8 for power ball
             Inex 9 is unused (MegaPiler 1-5)
         */
-        public DataTable SortedNumbers(string [] listOfWinners)
+
+        public DataTable UnsortedNumbers(string [] listOfWinners)
         {
             returnTable = new DataTable();
             returnTable.Columns.Add(ColumnHeadingI, typeof(string));
@@ -78,12 +80,9 @@ namespace MegaMillionsApp
 
                 returnTable.Rows.Add(returnRows);
             }
-            CountAndDeleteRepeatedWinners(returnTable);
-            ConvertToDates(returnTable);
-            SortWinningNumbers(returnTable);
             return returnTable;
         }
-
+        
         private void CountAndDeleteRepeatedWinners(DataTable returnTable)
         {
             List<DataRow> rowsToDelete = new List<DataRow>();
@@ -102,7 +101,6 @@ namespace MegaMillionsApp
                         {
                             rowsToDelete.Add(dr);
                         }
-                            
                     }
                 }
             }
@@ -111,6 +109,15 @@ namespace MegaMillionsApp
             {
                 returnTable.Rows.Remove(rowNumber);
             }
+        }
+
+        public DataTable SortedNumbers(string[] listOfWinners)
+        {
+            UnsortedNumbers(listOfWinners);
+            CountAndDeleteRepeatedWinners(returnTable);
+            ConvertToDates(returnTable);
+            SortWinningNumbers(returnTable);
+            return returnTable;
         }
 
         public void ConvertToDates(DataTable returnTable)
@@ -138,19 +145,93 @@ namespace MegaMillionsApp
                 ++arrayCount;
             }
         }
-
-        public static Dictionary<int,int> HighestPercentWinningNumbersMid2013()
+        
+        public static int Return2013Index(string[] listOfWinners)
         {
-            Dictionary<int, int> blank = new Dictionary<int, int>();
-            blank.Add(0, 0);
-            return blank;
+            // Minus 2 inorder to keep array [Month, Day, Year, 1st #, 2nd #, 3rd #, 4th #, 5th #, PowerBall, Unused]
+            int indexOf2013 = Array.IndexOf(listOfWinners, "2013") - 2;
+
+            //Hit the first Month: 10   and Day: 5 Year: 2013
+            //Mega Million changes to 1-75 Winning Numbers and 1-15 MegaBall
+            for (int endingIndexOf2013 = indexOf2013; listOfWinners.Count() > endingIndexOf2013; ++endingIndexOf2013)
+            {
+                if (listOfWinners[endingIndexOf2013] == "10" && listOfWinners[endingIndexOf2013 + 1] == "15")
+                {
+                    indexOf2013 = endingIndexOf2013;
+                    break;
+                }
+            }
+            return indexOf2013;
         }
 
-        public static Dictionary<int, int> HighPercentPowerBallNumberMid2013()
+        public DataTable HighestPercentWinningNumbersMid2013(string[] listOfWinners)
         {
-            Dictionary<int,int> blank  = new Dictionary<int, int>();
-            blank.Add(0, 0);
-            return blank;
+            DataTable DisplayWinningPercentages = new DataTable();
+            List<int> megaMillionNumbers = new List<int>();
+            DisplayWinningPercentages.Columns.Add("MegaMillion Number", typeof(string));
+            DisplayWinningPercentages.Columns.Add("Percentage Of Winning", typeof(string));
+
+
+            for (int arrayIndex = listOfWinners.Count(); arrayIndex > Return2013Index(listOfWinners); arrayIndex = arrayIndex - 10)
+            {
+                megaMillionNumbers.Add(int.Parse(listOfWinners[arrayIndex - 7]));
+                megaMillionNumbers.Add(int.Parse(listOfWinners[arrayIndex - 6]));
+                megaMillionNumbers.Add(int.Parse(listOfWinners[arrayIndex - 5]));
+                megaMillionNumbers.Add(int.Parse(listOfWinners[arrayIndex - 4]));
+                megaMillionNumbers.Add(int.Parse(listOfWinners[arrayIndex - 3]));
+            }
+
+            //Divide Each Number in List by count of List.
+            for (int megaNumber = 1; megaNumber <= 75; ++megaNumber)
+            {
+                //Create Percent of MegaNumber
+                double inputValue = ((double)megaMillionNumbers.Count(x => x == megaNumber) / (double)megaMillionNumbers.Count()) * 100.0;
+
+                inputValue = Math.Round(inputValue, 2);
+
+                DataRow returnRows = DisplayWinningPercentages.NewRow();
+                //Winning Number
+                returnRows["MegaMillion Number"] = megaNumber;
+
+                //Winning Percentage
+                returnRows["Percentage Of Winning"] = inputValue.ToString() + "%";
+
+                DisplayWinningPercentages.Rows.Add(returnRows);
+            }
+           
+            return DisplayWinningPercentages;
+        }
+
+        public DataTable HighPercentMegaBallNumberMid2013(string[] listOfWinners)
+        {
+            DataTable DisplayMegaBallPercentages = new DataTable();
+            List<int> megaBallNumbers = new List<int>();
+            DisplayMegaBallPercentages.Columns.Add("MegaBall Number", typeof(string));
+            DisplayMegaBallPercentages.Columns.Add("Percentage Of Winning", typeof(string));
+            for (int arrayIndex = listOfWinners.Count(); arrayIndex > Return2013Index(listOfWinners); arrayIndex = arrayIndex - 10)
+            {
+                megaBallNumbers.Add(int.Parse(listOfWinners[arrayIndex - 2]));
+            }
+
+            //Divide Each Number in List by count of List.
+            for (int megaNumber = 1; megaNumber <= 15; ++megaNumber)
+            {
+                //Create Percent of MegaNumber
+                double inputValue = ((double)megaBallNumbers.Count(x => x == megaNumber) / (double)megaBallNumbers.Count())*100.0;
+
+                inputValue = Math.Round(inputValue, 2);
+
+                DataRow returnRows = DisplayMegaBallPercentages.NewRow();
+                //Winning Number
+                returnRows["MegaBall Number"] = megaNumber;
+
+                //Winning Percentage
+                returnRows["Percentage Of Winning"] = inputValue.ToString() + "%";
+
+                DisplayMegaBallPercentages.Rows.Add(returnRows);
+            }
+
+            return DisplayMegaBallPercentages;
         }
     }
 }

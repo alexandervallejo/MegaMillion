@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MegaMillionsApp
 {
@@ -20,76 +23,77 @@ namespace MegaMillionsApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        SortedLists SortedList = new SortedLists();
+        private bool _dataEmpty = true;
+        private string[] _dataResponse = new string[] { };
+        
+
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
-        private int sortColumn = -1;
-
-
-        //private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
-        //{
-        //    // Determine whether the column is the same as the last column clicked.
-        //    if (e.Column != sortColumn)
-        //    {
-        //        // Set the sort column to the new column.
-        //        sortColumn = e.Column;
-        //        // Set the sort order to ascending by default.
-        //        listView1.Sorting = SortOrder.Ascending;
-        //    }
-        //    else
-        //    {
-        //        // Determine what the last sort order was and change it.
-        //        if (listView1.Sorting == SortOrder.Ascending)
-        //            listView1.Sorting = SortOrder.Descending;
-        //        else
-        //            listView1.Sorting = SortOrder.Ascending;
-        //    }
-
-        //    // Call the sort method to manually sort.
-        //    listView1.Sort();
-        //    // Set the ListViewItemSorter property to a new ListViewItemComparer
-        //    // object.
-        //    this.listView1.ListViewItemSorter = new ListViewItemComparer(e.Column,
-        //                                                      listView1.Sorting);
-        //}
-
-        class LotteryNumberSets           
-
+        public string[] returnCSVFile()
         {
-            public string WinningNumbersPercent { get; set; }
-            public string MegaBallPercent { get; set; }
+
+            if (_dataEmpty)
+            {
+                _dataResponse = SortedList.GetCSV("http://txlottery.org/export/sites/lottery/Games/Mega_Millions/Winning_Numbers/megamillions.csv");
+                _dataEmpty = false;
+            }
+            if (_dataResponse == null)
+            {
+                throw new ArgumentException("Data is gone FIND IT !");
+            }
+
+            return _dataResponse;
         }
 
         private void Lottery_Loaded(object sender, RoutedEventArgs e)
         {
-            CSVManipulation SortedLists = new CSVManipulation();
-            string[] dataResponse = SortedLists.GetCSV("http://txlottery.org/export/sites/lottery/Games/Mega_Millions/Winning_Numbers/megamillions.csv");
-            DataTable megaBallGrid = SortedLists.SortedNumbers(dataResponse);
+            string[] stringData = returnCSVFile();
+
+            DataTable megaBallGrid = SortedList.SortedNumbers(stringData);
+
             MegaBallGrid.DataContext = megaBallGrid.DefaultView;
 
-            //string[,] allMegaMillionValues = SortedLists.SortedNumbers();
-            //int numberOfColInArray = 3;
-
-            //for (var sizeOfArrays = 0; (allMegaMillionValues.Length / numberOfColInArray) - 1 > sizeOfArrays; ++sizeOfArrays)
-            //{
-            //    LotteryNumbers.Items.Add(new LotteryNumberSets()
-            //            { Numbers = allMegaMillionValues[0,sizeOfArrays],
-            //              MegaBall = allMegaMillionValues[2,sizeOfArrays],
-            //              NumOfTimesNumbers = allMegaMillionValues[3, sizeOfArrays],
-            //              LastWon = allMegaMillionValues[4,sizeOfArrays] });
-            //}
         }
 
-        private void Ascending_MenuItem_Click(object sender, RoutedEventArgs e)
+        private void DisplayNumbersPercentages_Click(object sender, RoutedEventArgs e)
         {
-            //LotteryNumbers.Items.Re
+            string[] stringData = returnCSVFile();
+
+            DataTable megaBallGrid = SortedList.HighestPercentWinningNumbersMid2013(stringData);
+
+            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
         }
 
-        private void Descending_MenuItem_Click(object sender, RoutedEventArgs e)
+        private void DisplayMegaBallPercentages_Click(object sender, RoutedEventArgs e)
         {
+            string[] stringData = returnCSVFile();
 
+            DataTable megaBallGrid = SortedList.HighPercentMegaBallNumberMid2013(stringData);
+
+            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
+        }
+
+        private void DisplayUnsortedList_Click(object sender, RoutedEventArgs e)
+        {
+            string[] stringData = returnCSVFile();
+
+            DataTable megaBallGrid = SortedList.UnsortedNumbers(stringData);
+
+            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
+        }
+
+        private void DispalyOriginalList_Click(object sender, RoutedEventArgs e)
+        {
+            string[] stringData = returnCSVFile();
+
+            DataTable megaBallGrid = SortedList.SortedNumbers(stringData);
+
+            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
         }
     }
 }

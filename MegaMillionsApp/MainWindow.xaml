@@ -10,44 +10,17 @@
     <Grid>
         <Menu HorizontalAlignment="Left" VerticalAlignment="Top">
             <MenuItem FontSize="15" Header="Sort" Height="25">
-                <MenuItem Header="Ascending"  Click="Ascending_MenuItem_Click"/>
-                <MenuItem Header="Descending" Click="Descending_MenuItem_Click"/>
+                <MenuItem Header="Display Number Percentages"  Click="DisplayNumbersPercentages_Click"/>
+                <MenuItem Header="Display MegaBall Percentages"  Click="DisplayMegaBallPercentages_Click"/>
+                <MenuItem Header="Display Full List(No Sort Or Count)" Click="DisplayUnsortedList_Click"/>
+                <MenuItem Header="Display Full List(Sorted)" Click="DispalyOriginalList_Click"/>
             </MenuItem>
         </Menu>
-
-
-
-        <!--<ListView HorizontalAlignment="Left" Margin ="0,27,0,0"
-                  VerticalAlignment="Top"
-                  Name="LotteryNumbers" Grid.ColumnSpan="2">
-            <ListView.View>
-                <GridView>
-
-                    <GridViewColumn Header="Lottery Numbers"
-                                DisplayMemberBinding="{Binding GridView1}"
-                                Width="250"/>
-                    <GridViewColumn Header="# of times won"
-                                    DisplayMemberBinding="{Binding NumOfTimesNumbers}"
-                                    Width="100"/>
-                    <GridViewColumn Header="MegaBall"
-                                DisplayMemberBinding="{Binding MegaBall}"
-                                Width="100"/>
-                    <GridViewColumn Header="# of times won"
-                                    DisplayMemberBinding="{Binding NumOfTimesMegaBall}"
-                                    Width="100"/>
-                    <GridViewColumn Header="Date Won"
-                                    DisplayMemberBinding="{Binding LastWon}"
-                                    Width="120"/>
-                </GridView>
-            </ListView.View>
-        </ListView>-->
-
 
         <DataGrid Name="MegaBallGrid" ItemsSource="{Binding}" 
             VerticalContentAlignment="Stretch" 
             HorizontalContentAlignment="Stretch" 
-            GridLinesVisibility="Vertical" 
-            MinColumnWidth="250"/>
-
+            GridLinesVisibility="All" 
+            MinColumnWidth="250" Margin="0,30,0,0"/>
     </Grid>
 </Window>

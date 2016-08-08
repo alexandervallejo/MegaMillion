@@ -7,10 +7,14 @@ using System.Data;
 
 namespace MegaMillionsAppUnitTests
 {
+
+    
     [TestClass]
     public class CSVManipulationTest
     {
-        CSVManipulation TestInstance = new CSVManipulation();
+        private bool Successful { get; set; }
+        private string Information { get; set; }
+        SortedLists TestInstance = new SortedLists();
         ParameterizedCSVTestData TestData = new ParameterizedCSVTestData();
         [TestMethod]
         public void CSVFileTest()
@@ -27,39 +31,82 @@ namespace MegaMillionsAppUnitTests
            }
         }
 
-        [TestMethod]
-        public void SortedNumbersTest()
+        public void CompareTestTables(DataTable ExpectedTable, DataTable InputSortedTable)
         {
-            bool AreTheTablesEqual = true;
-            string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedNumbersInputTestData();
-            DataTable ExpectedTable = TestData.SortedNumbersOutputTestData();
-            DataTable InputSortedTable = TestInstance.SortedNumbers(TestUnSortedNumbers);
-
+            Successful = true;
             if (ExpectedTable == null)
-                AreTheTablesEqual = false;
+            {
+                Successful = false;
+                Information += "\nExpected Table Empty";
+            }
             if (InputSortedTable == null)
-                AreTheTablesEqual = false;
+            {
+                Successful = false;
+                Information += "\nInput Table Empty";
+            }
             if (ExpectedTable.Rows.Count != InputSortedTable.Rows.Count)
-                AreTheTablesEqual = false;
-       
+            {
+                Successful = false;
+                Information += ("\nRow Count of expect: " + ExpectedTable.Rows.Count + "Row count of Input: " + InputSortedTable.Rows.Count);
+            }
+
+
             if (ExpectedTable.Columns.Count != InputSortedTable.Columns.Count)
-                AreTheTablesEqual = false;
+            {
+                Information += ("\nColumn Count of expect: " + ExpectedTable.Columns.Count + "Column count of Input: " + InputSortedTable.Columns.Count);
+                Successful = false;
+            }
+
 
             if (ExpectedTable.Columns.Cast<DataColumn>().Any(dc => !InputSortedTable.Columns.Contains(dc.ColumnName)))
             {
-                AreTheTablesEqual = false;
+                Information += "\nColumn Values MisMatch";
+                Successful = false;
             }
 
             for (int rows = 0; ExpectedTable.Rows.Count - 1 >= rows; ++rows)
             {
                 if (ExpectedTable.Columns.Cast<DataColumn>().Any(dc1 => ExpectedTable.Rows[rows][dc1.ColumnName].ToString() != InputSortedTable.Rows[rows][dc1.ColumnName].ToString()))
                 {
-                    AreTheTablesEqual = false;
+                    Information += "\nRow Values MisMatch";
+                    Successful = false;
                 }
             }
+        }
+        [TestMethod]
+        public void UnSortedNumbersTest()
+        {
+            string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedNumbersInputTestData();
+            DataTable ExpectedTable = TestData.UnSortedNumbersOutputTestData();
+            DataTable InputSortedTable = TestInstance.UnsortedNumbers(TestUnSortedNumbers);
+            CompareTestTables(ExpectedTable, InputSortedTable);
+            Assert.AreEqual(Successful, true, Information);
+        }
+        [TestMethod]
+        public void SortedNumbersTest()
+        {
+            string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedNumbersInputTestData();
+            DataTable ExpectedTable = TestData.SortedNumbersOutputTestData();
+            DataTable InputSortedTable = TestInstance.SortedNumbers(TestUnSortedNumbers);
+            CompareTestTables(ExpectedTable, InputSortedTable);
+            Assert.AreEqual(Successful, true, Information);
 
-            Assert.AreEqual(AreTheTablesEqual, true);
+        }
 
+        [TestMethod]
+        public void HighestPercentWinningNumbersMid2013Test()
+        {
+            string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedMegaMillionAndPowerBallTestData();
+            DataTable ExpectedTable = TestData.HighestPercentWinningNumbersMid2013TestData();
+            DataTable InputSortedTable = TestInstance.HighestPercentWinningNumbersMid2013(TestUnSortedNumbers);
+        }
+
+        [TestMethod]
+        public void HighestPercentWinningMegaBallMid2013Test()
+        {
+            string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedMegaMillionAndPowerBallTestData();
+            DataTable ExpectedTable = TestData.HighestPercentWinningMegaBallMid2013TestData();
+            DataTable InputSortedTable = TestInstance.HighPercentMegaBallNumberMid2013(TestUnSortedNumbers);
         }
     }
 }

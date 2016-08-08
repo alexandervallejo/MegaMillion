@@ -12,3 +12,4 @@ C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillio
 C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp.pdb
 C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\bin\Debug\MegaMillionsApp.pdb
 C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\MegaMillionsApp.csprojResolveAssemblyReference.cache
+C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsApp\obj\Debug\GeneratedInternalTypeHelper.g.cs
