@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace MegaMillionsApp
 {
@@ -32,6 +25,14 @@ namespace MegaMillionsApp
         {
             InitializeComponent();
 
+        }
+
+        public void NoInternet()
+        {
+            const string message =
+            "There seems to be no internet please try again later.";
+            const string caption = "No Internet";
+            var result = System.Windows.Forms.MessageBox.Show(message, caption);
         }
 
         public string[] returnCSVFile()
@@ -89,6 +90,16 @@ namespace MegaMillionsApp
 
         private void DispalyOriginalList_Click(object sender, RoutedEventArgs e)
         {
+            string[] stringData = returnCSVFile();
+
+            DataTable megaBallGrid = SortedList.SortedNumbers(stringData);
+
+            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
+        }
+
+        private void DisplayPickedNumbers_Click(object sender, RoutedEventArgs e)
+        {
+
             string[] stringData = returnCSVFile();
 
             DataTable megaBallGrid = SortedList.SortedNumbers(stringData);

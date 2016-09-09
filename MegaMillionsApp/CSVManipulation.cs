@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
+using System.Diagnostics;
 
 namespace MegaMillionsApp
 {
@@ -16,18 +17,56 @@ namespace MegaMillionsApp
 
         private DataTable returnTable { get; set; }
 
+        public static bool HasInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    using (var stream = client.OpenRead("http://www.google.com"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public string[] GetCSV(string _url)
         {
             string fileList;
             string[] tempStr;
             List<string> splitted = new List<string>();
+            if(HasInternetConnection())
+            {
+                try
+                {
+                    HttpWebRequest req = (HttpWebRequest)WebRequest.Create(_url);
+                    HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+                    using (var sr = new StreamReader(resp.GetResponseStream()))
+                    {
+                        fileList = sr.ReadToEnd();
+                        sr.Close();
+                    }
+                }
+                catch (WebException ex)
+                {
+                    using (var stream = ex.Response.GetResponseStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Console.WriteLine(reader.ReadToEnd());
+                    }
+                }
+            }
+            else
+            {
+                var main = App.Current.MainWindow as MainWindow;
+                main.NoInternet();
+                Process.GetCurrentProcess().Kill();
+            }
 
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(_url);
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-
-            StreamReader sr = new StreamReader(resp.GetResponseStream());
-            fileList = sr.ReadToEnd();
-            sr.Close();
             //Removes 1st column in CSV.
             tempStr = fileList.Replace("Mega Millions", "").Split(',');
             //Removes newline feed charcters created by .Split
@@ -233,5 +272,8 @@ namespace MegaMillionsApp
 
             return DisplayMegaBallPercentages;
         }
+
+
+
     }
 }
