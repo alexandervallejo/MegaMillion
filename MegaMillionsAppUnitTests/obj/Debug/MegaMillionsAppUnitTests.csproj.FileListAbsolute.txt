@@ -8,3 +8,13 @@ C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillio
 C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsApp.pdb
 C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\nunit.framework.dll
 C:\Users\Laptop\documents\visual studio 2015\Projects\MegaMillionsApp\MegaMillionsAppUnitTests\bin\Debug\nunit.framework.xml
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsAppUnitTests.dll
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsAppUnitTests.pdb
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsApp.exe
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\nunit.framework.dll
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\MegaMillionsApp.pdb
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\nunit.framework.xml
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.csprojResolveAssemblyReference.cache
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.dll
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.pdb

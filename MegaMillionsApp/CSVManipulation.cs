@@ -36,7 +36,7 @@ namespace MegaMillionsApp
         }
         public string[] GetCSV(string _url)
         {
-            string fileList;
+            string fileList = null;
             string[] tempStr;
             List<string> splitted = new List<string>();
             if(HasInternetConnection())
