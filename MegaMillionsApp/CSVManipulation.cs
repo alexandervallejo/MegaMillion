@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Diagnostics;
+using FastMember;
 
 namespace MegaMillionsApp
 {
@@ -187,10 +188,11 @@ namespace MegaMillionsApp
         
         public static int Return2013Index(string[] listOfWinners)
         {
-            // Minus 2 inorder to keep array [Month, Day, Year, 1st #, 2nd #, 3rd #, 4th #, 5th #, PowerBall, Unused]
+            //  Minus 2 inorder to keep check year in array. 
+            //  [Month, Day, Year, 1st #, 2nd #, 3rd #, 4th #, 5th #, PowerBall, Unused]
             int indexOf2013 = Array.IndexOf(listOfWinners, "2013") - 2;
 
-            //Hit the first Month: 10   and Day: 5 Year: 2013
+            //Hit the first Month: 10   and Day: 15 Year: 2013
             //Mega Million changes to 1-75 Winning Numbers and 1-15 MegaBall
             for (int endingIndexOf2013 = indexOf2013; listOfWinners.Count() > endingIndexOf2013; ++endingIndexOf2013)
             {
@@ -273,7 +275,235 @@ namespace MegaMillionsApp
             return DisplayMegaBallPercentages;
         }
 
+        public DataTable HighestWinningRatePicks(string[] listOfWinners)
+        {
+            DataTable numbersTable = HighestPercentWinningNumbersMid2013(listOfWinners);
+            DataTable megaBallNumbersTable = HighPercentMegaBallNumberMid2013(listOfWinners);
+            DataTable displayWinningPicks = new DataTable();
+            // Declare DataColumn and DataRow variables.
+            DataColumn pickedWinningNumbersCol;
+            DataRow pickedWinningNumbersRow;
+            pickedWinningNumbersCol = new DataColumn();
+            displayWinningPicks.Columns.Add("Picked Winning Numbers", typeof(string));
+            displayWinningPicks.Columns.Add("Picked Winning Mega Ball", typeof(string));
+
+            Dictionary<int, double> numberPercents = new Dictionary<int, double>();
+            Dictionary<int, double> megaBallNumberPercents = new Dictionary<int, double>();
+
+            List<string> winningNumbers = new List<string>();
+            List<string> numberPercentsSorted = new List<string>();
+            List<string> megaBallNumberPercentsSorted = new List<string>();
+
+            
+            
+            int key = 0;
+            int megaBall = 1;
+            int numberStart = 1;
+            int wrappingStart = 1;
+            int numberReStart = 0;
+            int wrappingReStart = 1;
+            double value = 0.0;
+            string checkPickedNumbers, newCheckPickedNumbers = null;
+            string[] sortNumsToCompare = new string[] { };
+            
+            // Grab percents for the 5 winning numbers, percentages.
+            foreach (DataRow percents in numbersTable.Rows)
+            {
+                key = int.Parse(percents[0].ToString());
+                value = double.Parse(percents[1].ToString().Trim('%'));
+                numberPercents.Add(key, value);
+            }
+
+            // Grab percents for the mega ball numbers, percentages.
+            foreach (DataRow percents in megaBallNumbersTable.Rows)
+            {
+                key = int.Parse(percents[0].ToString());
+                value = double.Parse(percents[1].ToString().Trim('%'));
+                megaBallNumberPercents.Add(key, value);
+            }
+
+            for (int arrayIndex = listOfWinners.Count(); arrayIndex > 0; arrayIndex = arrayIndex - 10)
+            {
+                //Grab 5 Winning Numbers and seperate by comma to sort later
+                string[] sortValues = { listOfWinners[arrayIndex - 7], listOfWinners[arrayIndex - 6], listOfWinners[arrayIndex - 5], listOfWinners[arrayIndex - 4], listOfWinners[arrayIndex - 3], listOfWinners[arrayIndex - 2] };
+                Array.Sort(sortValues);
+                winningNumbers.Add(sortValues[0] + "," + sortValues[1] + "," + sortValues[2] + ","+ sortValues[3] + "," + sortValues[4]);
+
+            }
+
+            foreach (KeyValuePair<int, double> numbers in numberPercents.OrderByDescending(keys => keys.Value))
+            {
+                numberPercentsSorted.Add(numbers.Key.ToString());
+            }
+
+            foreach (KeyValuePair<int, double> megaBalls in megaBallNumberPercents.OrderByDescending(keys => keys.Value))
+            {
+                megaBallNumberPercentsSorted.Add(megaBalls.Key.ToString());
+            }
+
+            sortNumsToCompare = numberPercentsSorted.Take(5).ToArray();
+            Array.Sort(sortNumsToCompare);
+            checkPickedNumbers = (string.Join(",", sortNumsToCompare) + "," + 
+                                  string.Join(",",megaBallNumberPercentsSorted.Take(1).ToArray()));
+            Array.Clear(sortNumsToCompare,0,5);
+
+            sortNumsToCompare = numberPercentsSorted.ToList().GetRange(1, 5).ToArray();
+            Array.Sort(sortNumsToCompare);
+            newCheckPickedNumbers = (string.Join(",", sortNumsToCompare) + "," +
+                                              string.Join(",", megaBallNumberPercentsSorted.Take(1).ToArray()));
+            Array.Clear(sortNumsToCompare, 0, 5);
+
+            
+            //Tried all first megaBall numbers start with 2 when cycling through
+            for (int totalArrayCount = 0; totalArrayCount < numberPercents.Count(); ++totalArrayCount)
+            {
+               if(!(winningNumbers.Any(str => str.Contains(checkPickedNumbers))) && checkPickedNumbers != newCheckPickedNumbers)
+                {
+                    
+                    //Add List of picked numbers upto 100 break after 100.
+                    if (displayWinningPicks.Rows.Count < 100)
+                    {
+                        pickedWinningNumbersRow = displayWinningPicks.NewRow();
+                        pickedWinningNumbersRow["Picked Winning Numbers"] = checkPickedNumbers;
+                        displayWinningPicks.Rows.Add(pickedWinningNumbersRow);
+
+                        Console.WriteLine(checkPickedNumbers);
+                        checkPickedNumbers = newCheckPickedNumbers;
+                        newCheckPickedNumbers = "";
+                    }
+                    else
+                    {
+                        return ParsedPickedNumbers(displayWinningPicks); ;
+                    }
+                }
+                else
+                {
+                    totalArrayCount = 0;
+                    if (numberStart < numberPercents.Count()-6)
+                    {
+
+                        sortNumsToCompare = numberPercentsSorted.ToList().GetRange(numberStart, 5).ToArray();
+                        Array.Sort(sortNumsToCompare);
+                        checkPickedNumbers = (string.Join(",", sortNumsToCompare) + "," +
+                                              string.Join(",", megaBallNumberPercentsSorted.ToList().
+                                              GetRange(megaBall, 1).ToArray()));
+                        Array.Clear(sortNumsToCompare, 0, 5);
 
 
+                        sortNumsToCompare = numberPercentsSorted.ToList().GetRange(numberStart + 1, 5).ToArray();
+                        Array.Sort(sortNumsToCompare);
+                        newCheckPickedNumbers = (string.Join(",", sortNumsToCompare) + "," +
+                                                string.Join(",", megaBallNumberPercentsSorted.ToList().GetRange(megaBall, 1).ToArray()));
+                        Array.Clear(sortNumsToCompare, 0, 5);
+                                              
+                        ++numberStart;
+                    }
+                    else
+                    {
+                        if(wrappingStart < 4)
+                        {
+                            sortNumsToCompare = numberPercentsSorted.ToList().GetRange(numberStart, 5 - wrappingStart).
+                                    Concat(numberPercentsSorted.ToList().GetRange(0, wrappingStart)).ToArray();
+
+                            Array.Sort(sortNumsToCompare);
+                            checkPickedNumbers = (string.Join(",", sortNumsToCompare) + "," +
+                                              string.Join(",", megaBallNumberPercentsSorted.ToList().
+                                              GetRange(megaBall, 1).ToArray()));
+                            Array.Clear(sortNumsToCompare, 0, 5);
+
+
+                            sortNumsToCompare = numberPercentsSorted.ToList().GetRange(numberStart + 1, 5 - wrappingStart).
+                                 Concat(numberPercentsSorted.ToList().GetRange(0, wrappingStart)).ToArray();
+                            Array.Sort(sortNumsToCompare);
+                            newCheckPickedNumbers = (string.Join(",", sortNumsToCompare) + "," +
+                                                    string.Join(",", megaBallNumberPercentsSorted.ToList().GetRange(megaBall, 1).ToArray()));
+                            Array.Clear(sortNumsToCompare, 0, 5);
+
+                            ++wrappingStart;
+                        }
+                        else
+                        {
+                            if (megaBall < megaBallNumberPercentsSorted.Count()-1)
+                            {
+                                //Choose top 5 number percentage numbers with different megaball.
+                                ++megaBall;
+                                numberStart = 0;
+                                wrappingStart = 0;
+                            }
+                            else
+                            {
+                                //Run trhough all numbers with different Megaballs megaball while it runs through 
+                                foreach (string megaBallRestart in megaBallNumberPercentsSorted)
+                                {      
+                                    if (numberReStart < numberPercents.Count() - 6)
+                                    {
+                                        sortNumsToCompare = numberPercentsSorted.ToList().GetRange(numberReStart, 5).ToArray();
+                                        Array.Sort(sortNumsToCompare);
+                                        checkPickedNumbers = string.Join(",", sortNumsToCompare) + "," + int.Parse(megaBallRestart);
+                                        Array.Clear(sortNumsToCompare, 0, 5);
+
+
+                                        sortNumsToCompare = numberPercentsSorted.ToList().GetRange(numberReStart + 1, 5).ToArray();
+                                        Array.Sort(sortNumsToCompare);
+                                        newCheckPickedNumbers = (string.Join(",", sortNumsToCompare) + "," + int.Parse(megaBallRestart));
+                                        Array.Clear(sortNumsToCompare, 0, 5);
+                                        
+                                    }
+                                    else
+                                    {
+                                        if (wrappingReStart < 4)
+                                        {
+                                            sortNumsToCompare = numberPercentsSorted.ToList().
+                                                                GetRange(numberStart, 5 - wrappingReStart).Concat(numberPercentsSorted.ToList().
+                                                                GetRange(0, wrappingReStart)).ToArray();
+                                            Array.Sort(sortNumsToCompare);
+                                            checkPickedNumbers = (string.Join(",", sortNumsToCompare) + "," +
+                                                              string.Join(",", megaBallNumberPercentsSorted.ToList().GetRange(megaBall, 1).ToArray()));
+                                            Array.Clear(sortNumsToCompare, 0, 5);
+
+
+                                            sortNumsToCompare = numberPercentsSorted.ToList().GetRange(numberStart + 1, 5 - wrappingReStart).
+                                                                Concat(numberPercentsSorted.ToList().GetRange(0, wrappingReStart)).ToArray();
+                                            Array.Sort(sortNumsToCompare);
+                                            newCheckPickedNumbers = (string.Join(",", sortNumsToCompare) + "," +
+                                                                    string.Join(",", megaBallNumberPercentsSorted.ToList().
+                                                                                GetRange(megaBall, 1).ToArray()));
+                                            Array.Clear(sortNumsToCompare, 0, 5);
+
+                                            ++wrappingReStart;
+                                        }
+                                        if (!(winningNumbers.Any(str => str.Contains(checkPickedNumbers))))
+                                        {
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            checkPickedNumbers = "";
+                                        }
+                                    }
+                                }
+                                ++numberReStart;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            return displayWinningPicks;
+        }
+
+        DataTable ParsedPickedNumbers(DataTable PickedNumbers)
+        {
+            int n = 0;
+            foreach(DataRow Numbers in PickedNumbers.Rows)
+            {
+                string temp = Numbers[0].ToString();
+                PickedNumbers.Rows[n][0] = Numbers[0].ToString().Substring(0, Numbers[0].ToString().LastIndexOf(','));
+                PickedNumbers.Rows[n][1] = "[" + temp.Substring(temp.LastIndexOf(',')+1,temp.Length - temp.LastIndexOf(',') - 1) + "]";
+                ++n;
+            }
+
+            return PickedNumbers;
+        }
     }
 }

@@ -94,6 +94,8 @@ namespace MegaMillionsApp
 
             DataTable megaBallGrid = SortedList.SortedNumbers(stringData);
 
+            DataTable fakeone = SortedList.HighestWinningRatePicks(stringData);
+
             MegaBallGrid.DataContext = megaBallGrid.DefaultView;
         }
 
@@ -102,7 +104,7 @@ namespace MegaMillionsApp
 
             string[] stringData = returnCSVFile();
 
-            DataTable megaBallGrid = SortedList.SortedNumbers(stringData);
+            DataTable megaBallGrid = SortedList.HighestWinningRatePicks(stringData);
 
             MegaBallGrid.DataContext = megaBallGrid.DefaultView;
         }

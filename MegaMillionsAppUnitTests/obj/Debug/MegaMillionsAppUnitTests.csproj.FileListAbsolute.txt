@@ -18,3 +18,4 @@ C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\nunit.fra
 C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.csprojResolveAssemblyReference.cache
 C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.dll
 C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\obj\Debug\MegaMillionsAppUnitTests.pdb
+C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsAppUnitTests\bin\Debug\FastMember.dll
