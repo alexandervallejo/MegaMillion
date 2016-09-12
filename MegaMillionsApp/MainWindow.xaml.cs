@@ -19,7 +19,6 @@ namespace MegaMillionsApp
         SortedLists SortedList = new SortedLists();
         private bool _dataEmpty = true;
         private string[] _dataResponse = new string[] { };
-        
 
         public MainWindow()
         {
@@ -94,15 +93,27 @@ namespace MegaMillionsApp
 
             DataTable megaBallGrid = SortedList.SortedNumbers(stringData);
 
-            DataTable fakeone = SortedList.HighestWinningRatePicks(stringData);
+            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
+        }
+
+        private void DisplayHighestPickedNumbers_Click(object sender, RoutedEventArgs e)
+        {
+
+            string[] stringData = returnCSVFile();
+
+            SortedList.HighestPercentChoosen = true;
+
+            DataTable megaBallGrid = SortedList.HighestWinningRatePicks(stringData);
 
             MegaBallGrid.DataContext = megaBallGrid.DefaultView;
         }
 
-        private void DisplayPickedNumbers_Click(object sender, RoutedEventArgs e)
+        private void DisplayLowestPickedNumbers_Click(object sender, RoutedEventArgs e)
         {
 
             string[] stringData = returnCSVFile();
+
+            SortedList.HighestPercentChoosen = false;
 
             DataTable megaBallGrid = SortedList.HighestWinningRatePicks(stringData);
 

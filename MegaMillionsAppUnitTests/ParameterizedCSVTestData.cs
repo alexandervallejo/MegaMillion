@@ -200,5 +200,69 @@ namespace MegaMillionsAppUnitTests
             return testTable;
         }
 
+
+
+        public static string[] InputDataPickedNumbersTestData()
+        {
+            /*  Testing the Picked Numbers need to pick the highest change of
+                the 5 numbers cycle through them with the highest powerball,
+                then increment to the next highest powerball until all non already 
+                one data is available.
+                Use 10 numbers at a time, read right to left.
+                Grab 3-7 to create winning Mega Million Numbers
+                Grab 8 for power ball
+            */
+            return new string[300]
+                       { null, null, null, "1","5","4","5","6","1",null,
+                         null, null, null, "1","5","4","5","6","2",null,
+                         null, null, null, "1","5","4","5","6","2",null,
+                         null, null, null, "1","6","4","5","6","3",null,
+                         null, null, null, "1","6","4","5","6","3",null,
+                         null, null, null, "1","6","4","5","6","3",null,
+                         null, null, null, "1","7","4","5","6","4",null,
+                         null, null, null, "1","7","4","5","6","4",null,
+                         null, null, null, "2","7","4","5","6","4",null,
+                         null, null, null, "2","8","4","5","6","4",null,
+                         null, null, null, "2","8","4","5","6","5",null,
+                         null, null, null, "2","8","4","5","6","5",null,
+                         null, null, null, "2","28","41","50","60","5",null,
+                         null, null, null, "2","2","4","5","6","5",null,
+                         null, null, null, "2","2","4","5","6","6",null,
+                         null, null, null, "2","2","4","5","6","6",null,
+                         null, null, null, "2","2","4","5","6","6",null,
+                         null, null, null, "2","2","4","5","6","6",null,
+                         null, null, null, "2","2","4","5","6","7",null,
+                         null, null, null, "3","2","4","5","6","7",null,
+                         null, null, null, "3","2","4","5","6","7",null,
+                         null, null, null, "3","2","4","5","6","8",null,
+                         null, null, null, "3","2","4","5","6","8",null,
+                         null, null, null, "3","2","4","5","6","8",null,
+                         null, null, null, "3","2","4","5","6","9",null,
+                         null, null, null, "3","2","4","5","6","9",null,
+                         null, null, null, "3","2","4","5","6","9",null,
+                         null, null, null, "4","2","4","5","6","9",null,
+                         null, null, null, "4","2","4","5","6","9",null,
+                         null, null, null, "4","2","4","5","6","9",null,};
+        }
+
+        public static string[] ExpectedPickedNumbersTestData()
+        {
+            /*  Testing the Picked Numbers need to pick the highest change of
+                the 5 numbers cycle through them with the highest powerball,
+                then increment to the next highest powerball until all non already 
+                one data is available.
+                Use 10 numbers at a time, read right to left.
+                Grab 3-7 to create winning Mega Million Numbers
+                Grab 8 for power ball
+            */
+            return new string[70]
+                       { "02", "10", "1999", "5","10","15","20","25","5","Don't Use",
+                         "03", "10", "1999", "5","10","15","20","25","5","Don't Use",
+                         "04", "10", "1999", "5","10","15","20","25","5","Don't Use",
+                         "05", "10", "1999", "5","10","15","20","25","5","Don't Use",
+                         "12", "30", "2012", "5","10","15","20","25","5","Don't Use",
+                         "05", "10", "2030", "1","5","15","3","2","15","Don't Use",
+                         "7", "1",   "3030", "50","100","150","15","7","50","Don't Use"};
+        }
     }
 }

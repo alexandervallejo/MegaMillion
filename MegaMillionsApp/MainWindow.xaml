@@ -14,7 +14,8 @@
                 <MenuItem Header="Display MegaBall Percentages"  Click="DisplayMegaBallPercentages_Click"/>
                 <MenuItem Header="Display Full List(No Sort Or Count)" Click="DisplayUnsortedList_Click"/>
                 <MenuItem Header="Display Full List(Sorted)" Click="DispalyOriginalList_Click"/>
-                <MenuItem Header="Averaged Highest Numbers" Click="DisplayPickedNumbers_Click"/>
+                <MenuItem Header="Display Highest Chance Numbers" Click="DisplayHighestPickedNumbers_Click"/>
+                <MenuItem Header="Display Lowest Chance Numbers" Click="DisplayLowestPickedNumbers_Click"/>
             </MenuItem>
         </Menu>
 
