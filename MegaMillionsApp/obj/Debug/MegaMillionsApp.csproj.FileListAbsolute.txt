@@ -26,4 +26,3 @@ C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsApp\obj\Debug\MegaMillionsApp.cs
 C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsApp\obj\Debug\MegaMillionsApp.exe
 C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsApp\obj\Debug\MegaMillionsApp.pdb
 C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsApp\obj\Debug\MegaMillionsApp.csprojResolveAssemblyReference.cache
-C:\GitRepos\MegaMillion\MegaMillion\MegaMillionsApp\bin\Debug\FastMember.dll

@@ -213,47 +213,42 @@ namespace MegaMillionsAppUnitTests
                 Grab 8 for power ball
             */
             return new string[300]
-                       { null, null, null, "1","5","4","5","6","1",null,
-                         null, null, null, "1","5","4","5","6","2",null,
-                         null, null, null, "1","5","4","5","6","2",null,
-                         null, null, null, "1","6","4","5","6","3",null,
-                         null, null, null, "1","6","4","5","6","3",null,
-                         null, null, null, "1","6","4","5","6","3",null,
-                         null, null, null, "1","7","4","5","6","4",null,
-                         null, null, null, "1","7","4","5","6","4",null,
-                         null, null, null, "2","7","4","5","6","4",null,
-                         null, null, null, "2","8","4","5","6","4",null,
-                         null, null, null, "2","8","4","5","6","5",null,
-                         null, null, null, "2","8","4","5","6","5",null,
-                         null, null, null, "2","28","41","50","60","5",null,
-                         null, null, null, "2","2","4","5","6","5",null,
-                         null, null, null, "2","2","4","5","6","6",null,
-                         null, null, null, "2","2","4","5","6","6",null,
-                         null, null, null, "2","2","4","5","6","6",null,
-                         null, null, null, "2","2","4","5","6","6",null,
-                         null, null, null, "2","2","4","5","6","7",null,
-                         null, null, null, "3","2","4","5","6","7",null,
-                         null, null, null, "3","2","4","5","6","7",null,
-                         null, null, null, "3","2","4","5","6","8",null,
-                         null, null, null, "3","2","4","5","6","8",null,
-                         null, null, null, "3","2","4","5","6","8",null,
-                         null, null, null, "3","2","4","5","6","9",null,
-                         null, null, null, "3","2","4","5","6","9",null,
-                         null, null, null, "3","2","4","5","6","9",null,
-                         null, null, null, "4","2","4","5","6","9",null,
-                         null, null, null, "4","2","4","5","6","9",null,
-                         null, null, null, "4","2","4","5","6","9",null,};
+                       { null, null, null, "1","5","6","7","8","1",null,
+                         null, null, null, "1","5","7","8","9","2",null,
+                         null, null, null, "1","5","10","11","12","2",null,
+                         null, null, null, "1","6","13","15","16","13",null,
+                         null, null, null, "1","6","40","50","60","30",null,
+                         null, null, null, "1","6","41","53","60","3",null,
+                         null, null, null, "1","7","43","54","61","4",null,
+                         null, null, null, "1","7","42","55","62","4",null,
+                         null, null, null, "2","7","44","56","63","4",null,
+                         null, null, null, "2","8","45","57","64","4",null,
+                         null, null, null, "2","8","46","58","66","5",null,
+                         null, null, null, "2","8","47","59","67","6",null,
+                         null, null, null, "2","9","41","50","60","6",null,
+                         null, null, null, "2","10","21","52","68","5",null,
+                         null, null, null, "2","10","17","28","69","6",null,
+                         null, null, null, "2","11","16","29","66","6",null,
+                         null, null, null, "2","12","15","30","67","6",null,
+                         null, null, null, "2","13","21","31","64","6",null,
+                         null, null, null, "2","14","22","32","48","7",null,
+                         null, null, null, "3","4","7","36","70","7",null,
+                         null, null, null, "3","5","8","38","71","7",null,
+                         null, null, null, "3","6","9","39","72","8",null,
+                         null, null, null, "3","7","10","41","73","9",null,
+                         null, null, null, "3","8","11","42","74","10",null,
+                         null, null, null, "3","9","12","43","75","11",null,
+                         null, null, null, "3","10","13","44","60","12",null,
+                         null, null, null, "3","11","14","47","61","13",null,
+                         null, null, null, "4","12","15","48","62","14",null,
+                         null, null, null, "4","10","16","50","75","15",null,
+                         null, null, null, "4","12","17","52","70","15",null,};
         }
 
-        public static string[] ExpectedPickedNumbersTestData()
+        public static string[] ExpectedHighestPickedNumbersTestData()
         {
-            /*  Testing the Picked Numbers need to pick the highest change of
-                the 5 numbers cycle through them with the highest powerball,
-                then increment to the next highest powerball until all non already 
-                one data is available.
-                Use 10 numbers at a time, read right to left.
-                Grab 3-7 to create winning Mega Million Numbers
-                Grab 8 for power ball
+            /*  
+
             */
             return new string[70]
                        { "02", "10", "1999", "5","10","15","20","25","5","Don't Use",
