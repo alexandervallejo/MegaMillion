@@ -290,16 +290,15 @@ namespace MegaMillionsApp
             Dictionary<int, double> megaBallNumberPercents = new Dictionary<int, double>();
 
             List<string> winningNumbers = new List<string>();
-            List<string> numberPercentsSorted = new List<string>();
-            List<string> megaBallNumberPercentsSorted = new List<string>();
+            List<int> numberPercentsSorted = new List<int>();
+            List<int> megaBallNumberPercentsSorted = new List<int>();
             
             int key = 0;
             int wrappingStart = 1;
+            int[] sortNumsToCompare = new int[] { };
             double value = 0.0;
-
             string checkPickedNumbers = null;
-
-            string[] sortNumsToCompare = new string[] { };
+            
             
             // Grab percents for the 5 winning numbers, percentages.
             foreach (DataRow percents in numbersTable.Rows)
@@ -331,12 +330,12 @@ namespace MegaMillionsApp
             {
                 foreach (KeyValuePair<int, double> numbers in numberPercents.OrderByDescending(keys => keys.Value))
                 {
-                    numberPercentsSorted.Add(numbers.Key.ToString());
+                    numberPercentsSorted.Add(numbers.Key);
                 }
 
                 foreach (KeyValuePair<int, double> megaBalls in megaBallNumberPercents.OrderByDescending(keys => keys.Value))
                 {
-                    megaBallNumberPercentsSorted.Add(megaBalls.Key.ToString());
+                    megaBallNumberPercentsSorted.Add(megaBalls.Key);
                 }
 
             }
@@ -345,12 +344,12 @@ namespace MegaMillionsApp
                 //Lowest winning percent.
                 foreach (KeyValuePair<int, double> numbers in numberPercents.OrderBy(keys => keys.Value))
                 {
-                    numberPercentsSorted.Add(numbers.Key.ToString());
+                    numberPercentsSorted.Add(numbers.Key);
                 }
 
                 foreach (KeyValuePair<int, double> megaBalls in megaBallNumberPercents.OrderBy(keys => keys.Value))
                 {
-                    megaBallNumberPercentsSorted.Add(megaBalls.Key.ToString());
+                    megaBallNumberPercentsSorted.Add(megaBalls.Key);
                 }
             }
             //Tried all highest number percents then moves to increment megaball with highest numbers.
@@ -360,7 +359,7 @@ namespace MegaMillionsApp
                 for (int megamillionNumber = 0; megamillionNumber < 75; ++megamillionNumber)
                 {
                     checkPickedNumbers = "";
-                    if (megamillionNumber < 71)
+                    if (megamillionNumber < 70)
                     {
                         sortNumsToCompare = numberPercentsSorted.ToList().GetRange(megamillionNumber, 5).ToArray();
                         Array.Sort(sortNumsToCompare);
