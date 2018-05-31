@@ -26,9 +26,9 @@ namespace MegaMillion.Service
         public MonitorService(string[] args, int intervalInHours = 2)
         {
             this._SortedLists = new SortedLists(Properties.Settings.Default.ConnectionString);
-            if (args.Count<string>() > 0)
+            if (args.Count() > 0)
             {
-                if (!int.TryParse(args[0], out this._HourInterval))
+                if (int.TryParse(args[0], out this._HourInterval) == false)
                 {
                     this._HourInterval = intervalInHours;
                 }
