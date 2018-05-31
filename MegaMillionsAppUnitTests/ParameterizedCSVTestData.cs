@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MegaMillion.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -10,10 +11,6 @@ namespace MegaMillionsAppUnitTests
     class ParameterizedCSVTestData
     { 
         private DataTable testTable { get; set; }
-        private string ColumnI = "Winning Numbers(Sorted)";
-        private string ColumnII = "Mega Ball";
-        private string ColumnIII = "Most Recent Winning Date";
-        private string ColumnIV = "Number of Time Won";
 
         public static List<string> CSVFileTestCompareData()
         {
@@ -52,10 +49,10 @@ namespace MegaMillionsAppUnitTests
         public DataTable UnSortedNumbersOutputTestData()
         {
             testTable = new DataTable();
-            testTable.Columns.Add(ColumnI, typeof(string));
-            testTable.Columns.Add(ColumnII, typeof(string));
-            testTable.Columns.Add(ColumnIII, typeof(string));
-            testTable.Columns.Add(ColumnIV, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingI, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingII, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingIII, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingIV, typeof(string));
             testTable.Rows.Add(new string[4] { "0", "0", "0", null });
             testTable.Rows.Add(new string[4] { "0", "0", "0", null });
             testTable.Rows.Add(new string[4] { "0", "0", "0", null });
@@ -65,41 +62,41 @@ namespace MegaMillionsAppUnitTests
             testTable.Rows.Add(new string[4] { "0", "0", "0", null });
 
             //Rows 1-7 Column Numbers
-            testTable.Rows[0][ColumnI] = "50,100,150,15,7";
-            testTable.Rows[1][ColumnI] = "1,5,15,3,2";
-            testTable.Rows[2][ColumnI] = "5,10,15,20,25";
-            testTable.Rows[3][ColumnI] = "5,10,15,20,25";
-            testTable.Rows[4][ColumnI] = "5,10,15,20,25";
-            testTable.Rows[5][ColumnI] = "5,10,15,20,25";
-            testTable.Rows[6][ColumnI] = "5,10,15,20,25";
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingI] = "50,100,150,15,7";
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingI] = "1,5,15,3,2";
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingI] = "5,10,15,20,25";
+            testTable.Rows[3][MegaMillionConsts.ColumnHeadingI] = "5,10,15,20,25";
+            testTable.Rows[4][MegaMillionConsts.ColumnHeadingI] = "5,10,15,20,25";
+            testTable.Rows[5][MegaMillionConsts.ColumnHeadingI] = "5,10,15,20,25";
+            testTable.Rows[6][MegaMillionConsts.ColumnHeadingI] = "5,10,15,20,25";
 
             //Rows 1-7 Column MegaBall
-            testTable.Rows[0][ColumnII] = "50";
-            testTable.Rows[1][ColumnII] = "15";
-            testTable.Rows[2][ColumnII] = "5";
-            testTable.Rows[3][ColumnII] = "5";
-            testTable.Rows[4][ColumnII] = "5";
-            testTable.Rows[5][ColumnII] = "5";
-            testTable.Rows[6][ColumnII] = "5";
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingII] = "50";
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingII] = "15";
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingII] = "5";
+            testTable.Rows[3][MegaMillionConsts.ColumnHeadingII] = "5";
+            testTable.Rows[4][MegaMillionConsts.ColumnHeadingII] = "5";
+            testTable.Rows[5][MegaMillionConsts.ColumnHeadingII] = "5";
+            testTable.Rows[6][MegaMillionConsts.ColumnHeadingII] = "5";
 
 
             //Rows 1-7 Column Date
-            testTable.Rows[0][ColumnIII] = "3030-7-1";
-            testTable.Rows[1][ColumnIII] = "2030-05-10";
-            testTable.Rows[2][ColumnIII] = "2012-12-30";
-            testTable.Rows[3][ColumnIII] = "1999-05-10";
-            testTable.Rows[4][ColumnIII] = "1999-04-10";
-            testTable.Rows[5][ColumnIII] = "1999-03-10";
-            testTable.Rows[6][ColumnIII] = "1999-02-10";
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingIII] = "3030-7-1";
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingIII] = "2030-05-10";
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingIII] = "2012-12-30";
+            testTable.Rows[3][MegaMillionConsts.ColumnHeadingIII] = "1999-05-10";
+            testTable.Rows[4][MegaMillionConsts.ColumnHeadingIII] = "1999-04-10";
+            testTable.Rows[5][MegaMillionConsts.ColumnHeadingIII] = "1999-03-10";
+            testTable.Rows[6][MegaMillionConsts.ColumnHeadingIII] = "1999-02-10";
 
             //Rows 1-7 Column MegaBall Count
-            testTable.Rows[0][ColumnIV] = null;
-            testTable.Rows[1][ColumnIV] = null;
-            testTable.Rows[2][ColumnIV] = null;
-            testTable.Rows[3][ColumnIV] = null;
-            testTable.Rows[4][ColumnIV] = null;
-            testTable.Rows[5][ColumnIV] = null;
-            testTable.Rows[6][ColumnIV] = null;
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingIV] = null;
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingIV] = null;
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingIV] = null;
+            testTable.Rows[3][MegaMillionConsts.ColumnHeadingIV] = null;
+            testTable.Rows[4][MegaMillionConsts.ColumnHeadingIV] = null;
+            testTable.Rows[5][MegaMillionConsts.ColumnHeadingIV] = null;
+            testTable.Rows[6][MegaMillionConsts.ColumnHeadingIV] = null;
 
             return testTable;
         }
@@ -107,35 +104,35 @@ namespace MegaMillionsAppUnitTests
         public DataTable SortedNumbersOutputTestData()
         {
             testTable = new DataTable();
-            testTable.Columns.Add(ColumnI, typeof(string));
-            testTable.Columns.Add(ColumnII, typeof(string));
-            testTable.Columns.Add(ColumnIII, typeof(string));
-            testTable.Columns.Add(ColumnIV, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingI, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingII, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingIII, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingIV, typeof(string));
             testTable.Rows.Add(new string[4] { "0", "0", "0", "" });
             testTable.Rows.Add(new string[4] { "0", "0", "0", "" });
             testTable.Rows.Add(new string[4] { "0", "0", "0", "" });
 
             //Rows 1-3 Column Numbers
-            testTable.Rows[0][ColumnI] =  "[7 - 15 - 50 - 100 - 150]";
-            testTable.Rows[1][ColumnI] =  "[1 - 2 - 3 - 5 - 15]";
-            testTable.Rows[2][ColumnI] =  "[5 - 10 - 15 - 20 - 25]";
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingI] =  "[7 - 15 - 50 - 100 - 150]";
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingI] =  "[1 - 2 - 3 - 5 - 15]";
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingI] =  "[5 - 10 - 15 - 20 - 25]";
             
             
             //Rows 1-4 Column MegaBall
-            testTable.Rows[0][ColumnII] =  "50";
-            testTable.Rows[1][ColumnII] =  "15";
-            testTable.Rows[2][ColumnII] =  "5" ;
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingII] =  "50";
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingII] =  "15";
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingII] =  "5" ;
 
 
             //Rows 1-3 Column Date
-            testTable.Rows[0][ColumnIII] = DateTime.Parse("3030-7-01").ToString("yyyy-MM-dd");
-            testTable.Rows[1][ColumnIII] = DateTime.Parse("2030-5-10").ToString("yyyy-MM-dd");
-            testTable.Rows[2][ColumnIII] = DateTime.Parse("2012-12-30").ToString("yyyy-MM-dd");
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingIII] = DateTime.Parse("3030-7-01").ToString("yyyy-MM-dd");
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingIII] = DateTime.Parse("2030-5-10").ToString("yyyy-MM-dd");
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingIII] = DateTime.Parse("2012-12-30").ToString("yyyy-MM-dd");
 
             //Rows 1-3 Column MegaBall Count
-            testTable.Rows[0][ColumnIV] = "1";
-            testTable.Rows[1][ColumnIV] = "1";
-            testTable.Rows[2][ColumnIV] = "5";
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingIV] = "1";
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingIV] = "1";
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingIV] = "5";
 
             return testTable;
         }
@@ -161,20 +158,20 @@ namespace MegaMillionsAppUnitTests
         public DataTable HighestPercentWinningNumbersMid2013TestData()
         {
             testTable = new DataTable();
-            testTable.Columns.Add("MegaMillion Number", typeof(string));
-            testTable.Columns.Add("Percentage Of Winning", typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingMegaMillionNumber, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingPickedMegaBallPerc, typeof(string));
 
             //Rows 1-4 Column Numbers
             for(int index = 0; index <= 75; ++index)
             {
                 testTable.Rows.Add(new double[2] { 0.0, 0.0 });
-                testTable.Rows[index]["MegaMillion Number"] = index + 1;
+                testTable.Rows[index][MegaMillionConsts.ColumnHeadingMegaMillionNumber] = index + 1;
             }
                 
             //Rows 1-4 Column MegaBall
-            testTable.Rows[4]["Percentage Of Winning"] = Math.Round(5.0/25.0);
-            testTable.Rows[9]["Percentage Of Winning"] = Math.Round(10.0 / 25.0);
-            testTable.Rows[14]["Percentage Of Winning"] = Math.Round(5.0 / 25.0);
+            testTable.Rows[4][MegaMillionConsts.ColumnHeadingPickedMegaBallPerc] = Math.Round(5.0/25.0);
+            testTable.Rows[9][MegaMillionConsts.ColumnHeadingPickedMegaBallPerc] = Math.Round(10.0 / 25.0);
+            testTable.Rows[14][MegaMillionConsts.ColumnHeadingPickedMegaBallPerc] = Math.Round(5.0 / 25.0);
 
             return testTable;
         }
@@ -182,20 +179,20 @@ namespace MegaMillionsAppUnitTests
         public DataTable HighestPercentWinningMegaBallMid2013TestData()
         {
             testTable = new DataTable();
-            testTable.Columns.Add("MegaMillion Number", typeof(string));
-            testTable.Columns.Add("Percentage Of Winning", typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingMegaMillionNumber, typeof(string));
+            testTable.Columns.Add(MegaMillionConsts.ColumnHeadingPickedMegaBallPerc, typeof(string));
 
             //Rows 1-4 Column Numbers
             for (int index = 0; index <= 15; ++index)
             {
                 testTable.Rows.Add(new double[2] { 0.0, 0.0 });
-                testTable.Rows[index]["MegaMillion Number"] = index + 1;
+                testTable.Rows[index][MegaMillionConsts.ColumnHeadingMegaMillionNumber] = index + 1;
             }
 
             //Rows 1-4 Column MegaBall
-            testTable.Rows[0]["Percentage Of Winning"] = Math.Round(2.0 / 5.0);
-            testTable.Rows[1]["Percentage Of Winning"] = Math.Round(2.0 / 5.0);
-            testTable.Rows[2]["Percentage Of Winning"] = Math.Round(1.0 / 5.0);
+            testTable.Rows[0][MegaMillionConsts.ColumnHeadingPickedMegaBallPerc] = Math.Round(2.0 / 5.0);
+            testTable.Rows[1][MegaMillionConsts.ColumnHeadingPickedMegaBallPerc] = Math.Round(2.0 / 5.0);
+            testTable.Rows[2][MegaMillionConsts.ColumnHeadingPickedMegaBallPerc] = Math.Round(1.0 / 5.0);
 
             return testTable;
         }

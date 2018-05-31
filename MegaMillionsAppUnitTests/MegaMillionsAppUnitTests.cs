@@ -4,6 +4,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MegaMillionsApp;
 using System.Collections.Generic;
 using System.Data;
+using MegaMillion.DB;
+using MegaMillion.Data;
 
 namespace MegaMillionsAppUnitTests
 {
@@ -14,14 +16,16 @@ namespace MegaMillionsAppUnitTests
     {
         private bool Successful { get; set; }
         private string Information { get; set; }
-        SortedLists TestInstance = new SortedLists();
+        const string connectionString = "Data Source=LAPTOP-PC,49172; Integrated Security=false; Initial Catalog = MegaMillion; User ID=alex;Password=test";
+        SortedLists TestInstance = new SortedLists(connectionString);
+        MegaMillionDB TestDBInstance = new MegaMillionDB(connectionString);
         ParameterizedCSVTestData TestData = new ParameterizedCSVTestData();
         [TestMethod]
         public void CSVFileTest()
         {
             int count = 0;
             List<string> expectedTable = new List<string>();
-            string [] returnedTable = TestInstance.GetCSV("http://www.sample-videos.com/csv/Sample-Spreadsheet-10-rows.csv");
+            string [] returnedTable = TestDBInstance.GetCSV("http://www.sample-videos.com/csv/Sample-Spreadsheet-10-rows.csv");
             expectedTable = ParameterizedCSVTestData.CSVFileTestCompareData();
 
            foreach (var Compare in returnedTable)
@@ -73,32 +77,13 @@ namespace MegaMillionsAppUnitTests
                 }
             }
         }
-        [TestMethod]
-        public void UnSortedNumbersTest()
-        {
-            string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedNumbersInputTestData();
-            DataTable ExpectedTable = TestData.UnSortedNumbersOutputTestData();
-            DataTable InputSortedTable = TestInstance.UnsortedNumbers(TestUnSortedNumbers);
-            CompareTestTables(ExpectedTable, InputSortedTable);
-            Assert.AreEqual(Successful, true, Information);
-        }
-        [TestMethod]
-        public void SortedNumbersTest()
-        {
-            string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedNumbersInputTestData();
-            DataTable ExpectedTable = TestData.SortedNumbersOutputTestData();
-            DataTable InputSortedTable = TestInstance.SortedNumbers(TestUnSortedNumbers);
-            CompareTestTables(ExpectedTable, InputSortedTable);
-            Assert.AreEqual(Successful, true, Information);
-
-        }
 
         [TestMethod]
         public void HighestPercentWinningNumbersMid2013Test()
         {
             string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedMegaMillionAndPowerBallTestData();
             DataTable ExpectedTable = TestData.HighestPercentWinningNumbersMid2013TestData();
-            DataTable InputSortedTable = TestInstance.HighestPercentWinningNumbersMid2013(TestUnSortedNumbers);
+            DataTable InputSortedTable = TestInstance.HighestPercentWinningNumbersMid2013();
         }
 
         [TestMethod]
@@ -106,7 +91,7 @@ namespace MegaMillionsAppUnitTests
         {
             string[] TestUnSortedNumbers = ParameterizedCSVTestData.UnSortedMegaMillionAndPowerBallTestData();
             DataTable ExpectedTable = TestData.HighestPercentWinningMegaBallMid2013TestData();
-            DataTable InputSortedTable = TestInstance.HighPercentMegaBallNumberMid2013(TestUnSortedNumbers);
+            DataTable InputSortedTable = TestInstance.HighPercentMegaBallNumberMid2013();
         }
     }
 }

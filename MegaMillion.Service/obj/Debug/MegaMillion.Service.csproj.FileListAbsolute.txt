@@ -1,0 +1,12 @@
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\MegaMillion.Service.exe.config
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\MegaMillion.Service.exe
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\MegaMillion.Service.pdb
+C:\GitRepos\MegaMillion\MegaMillion.Service\obj\Debug\MegaMillion.Service.csprojResolveAssemblyReference.cache
+C:\GitRepos\MegaMillion\MegaMillion.Service\obj\Debug\MegaMillion.Service.exe
+C:\GitRepos\MegaMillion\MegaMillion.Service\obj\Debug\MegaMillion.Service.pdb
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\log4net.dll
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\log4net.xml
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\MegaMillion.Data.dll
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\MegaMillion.DB.dll
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\MegaMillion.Data.pdb
+C:\GitRepos\MegaMillion\MegaMillion.Service\bin\Debug\MegaMillion.DB.pdb

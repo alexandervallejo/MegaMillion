@@ -64,6 +64,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MegaMillion.Data\MegaMillion.Data.csproj">
+      <Project>{91CCC985-E6B3-4C5D-A06A-86F6AC4D1CFF}</Project>
+      <Name>MegaMillion.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MegaMillion.DB\MegaMillion.DB.csproj">
+      <Project>{593C2ABB-E0DA-4AF4-9B9B-E7B9BBBD6441}</Project>
+      <Name>MegaMillion.DB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MegaMillionsApp\MegaMillionsApp.csproj">
       <Project>{b899634f-8320-4d6f-9766-91e4286a9e88}</Project>
       <Name>MegaMillionsApp</Name>

@@ -1,0 +1,4 @@
+C:\GitRepos\MegaMillion\MegaMillion.Data\bin\Debug\MegaMillion.Data.dll
+C:\GitRepos\MegaMillion\MegaMillion.Data\bin\Debug\MegaMillion.Data.pdb
+C:\GitRepos\MegaMillion\MegaMillion.Data\obj\Debug\MegaMillion.Data.dll
+C:\GitRepos\MegaMillion\MegaMillion.Data\obj\Debug\MegaMillion.Data.pdb

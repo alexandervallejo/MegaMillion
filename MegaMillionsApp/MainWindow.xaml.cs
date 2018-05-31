@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MegaMillion.DB;
+using System;
 using System.Data;
 using System.Windows;
 
@@ -16,7 +17,7 @@ namespace MegaMillionsApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        SortedLists SortedList = new SortedLists();
+        SortedLists _SortedList = new SortedLists(Properties.Settings.Default.ConnectionString);
         private bool _dataEmpty = true;
         private string[] _dataResponse = new string[] { };
 
@@ -26,98 +27,79 @@ namespace MegaMillionsApp
 
         }
 
-        public void NoInternet()
-        {
-            const string message =
-            "There seems to be no internet please try again later.";
-            const string caption = "No Internet";
-            var result = System.Windows.Forms.MessageBox.Show(message, caption);
-        }
-
-        public string[] returnCSVFile()
-        {
-
-            if (_dataEmpty)
-            {
-                _dataResponse = SortedList.GetCSV("http://txlottery.org/export/sites/lottery/Games/Mega_Millions/Winning_Numbers/megamillions.csv");
-                _dataEmpty = false;
-            }
-            if (_dataResponse == null)
-            {
-                throw new ArgumentException("Data is gone FIND IT !");
-            }
-
-            return _dataResponse;
-        }
-
         private void Lottery_Loaded(object sender, RoutedEventArgs e)
         {
-            string[] stringData = returnCSVFile();
+            try
+            {
+                MegaBallGrid.DataContext = _SortedList.SortedNumbers();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lottery_Loaded");
+            }
+        }
 
-            DataTable megaBallGrid = SortedList.SortedNumbers(stringData);
-
-            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
-
+        private void DispalyLotteryNumbersList_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MegaBallGrid.DataContext = _SortedList.SortedNumbers();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "DispalyLotteryNumbersList_Click");
+            }
         }
 
         private void DisplayNumbersPercentages_Click(object sender, RoutedEventArgs e)
         {
-            string[] stringData = returnCSVFile();
-
-            DataTable megaBallGrid = SortedList.HighestPercentWinningNumbersMid2013(stringData);
-
-            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
+            try
+            {
+                MegaBallGrid.DataContext = _SortedList.HighestPercentWinningNumbersMid2013();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "DisplayNumbersPercentages_Click");
+            }
         }
 
         private void DisplayMegaBallPercentages_Click(object sender, RoutedEventArgs e)
         {
-            string[] stringData = returnCSVFile();
-
-            DataTable megaBallGrid = SortedList.HighPercentMegaBallNumberMid2013(stringData);
-
-            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
+            try
+            {
+                MegaBallGrid.DataContext = _SortedList.HighPercentMegaBallNumberMid2013();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "DisplayMegaBallPercentages_Click");
+            }
         }
 
-        private void DisplayUnsortedList_Click(object sender, RoutedEventArgs e)
-        {
-            string[] stringData = returnCSVFile();
-
-            DataTable megaBallGrid = SortedList.UnsortedNumbers(stringData);
-
-            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
-        }
-
-        private void DispalyOriginalList_Click(object sender, RoutedEventArgs e)
-        {
-            string[] stringData = returnCSVFile();
-
-            DataTable megaBallGrid = SortedList.SortedNumbers(stringData);
-
-            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
-        }
 
         private void DisplayHighestPickedNumbers_Click(object sender, RoutedEventArgs e)
         {
-
-            string[] stringData = returnCSVFile();
-
-            SortedList.HighestPercentChoosen = true;
-
-            DataTable megaBallGrid = SortedList.HighestWinningRatePicks(stringData);
-
-            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
+            try
+            {
+                _SortedList.HighestPercentChoosen = true;
+                MegaBallGrid.DataContext = _SortedList.HighestWinningRatePicks();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "DisplayHighestPickedNumbers_Click");
+            }
         }
 
         private void DisplayLowestPickedNumbers_Click(object sender, RoutedEventArgs e)
         {
-
-            string[] stringData = returnCSVFile();
-
-            SortedList.HighestPercentChoosen = false;
-
-            DataTable megaBallGrid = SortedList.HighestWinningRatePicks(stringData);
-
-            MegaBallGrid.DataContext = megaBallGrid.DefaultView;
+            try
+            {
+                _SortedList.HighestPercentChoosen = false;
+                MegaBallGrid.DataContext = _SortedList.HighestWinningRatePicks();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "DisplayLowestPickedNumbers_Click");
+            }
         }
     }
 }
